@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "send_grid/version"
 
 Gem::Specification.new do |s|
-  s.name        = "send_grid"
+  s.name        = "sendgrid-rails"
   s.version     = SendGrid::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["PavelTyk"]
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{SendGrid Rails gem}
   s.description = %q{Easy to use SendGrid API gem}
 
-  s.rubyforge_project = "send_grid"
+  s.rubyforge_project = "sendgrid-rails"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
