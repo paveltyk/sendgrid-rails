@@ -1,6 +1,4 @@
-require 'send_grid/api_header'
-require 'active_support/ordered_hash'
-require 'active_support/json'
+require 'spec_helper'
 
 describe SendGrid::ApiHeader do
   let(:header) { SendGrid::ApiHeader.new }

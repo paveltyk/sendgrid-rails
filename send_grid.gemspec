@@ -6,11 +6,11 @@ Gem::Specification.new do |s|
   s.name        = "send_grid"
   s.version     = SendGrid::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
+  s.authors     = ["PavelTyk"]
+  s.email       = ["paveltyk@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{SendGrid Rails gem}
+  s.description = %q{Easy to use SendGrid API gem}
 
   s.rubyforge_project = "send_grid"
 
@@ -19,6 +19,6 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
   s.add_development_dependency "rspec", "~> 2.5.0"
-  s.add_runtime_dependency "activesupport", ">= 2.1.0"
+  s.add_dependency "activesupport", ">= 2.1.0"
 end
 

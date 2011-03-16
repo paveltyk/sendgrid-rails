@@ -1,3 +1,7 @@
+require 'active_support/ordered_hash'
+require 'active_support/json'
+
 module SendGrid
-  # Your code goes here...
+  autoload :ApiHeader, 'send_grid/api_header'
 end
+
