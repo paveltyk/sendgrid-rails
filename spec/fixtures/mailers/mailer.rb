@@ -4,7 +4,7 @@ class Mailer < ActionMailer::Base
 
   def email_with_multiple_recipients(recipients)
     add_recipients recipients
-    mail
+    mail :body => "Hello!"
   end
 end
 
