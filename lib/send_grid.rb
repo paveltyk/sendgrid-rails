@@ -22,8 +22,12 @@ module SendGrid
 
     def mail_with_send_grid(headers={}, &block)
       headers[:to] ||= send_grid_stub_for_recipient_email
-      headers['X-SMTPAPI'] = send_grid_header.to_json
+      headers['X-SMTPAPI'] = send_grid_header.to_json if send_grid_header.data.present?
       mail_without_send_grid(headers, &block)
+    end
+
+    def open_tracking(enabled = true)
+      add_filter_setting(:opentrack, :enabled, enabled ? 1 : 0) unless enabled.nil?
     end
   end
 end

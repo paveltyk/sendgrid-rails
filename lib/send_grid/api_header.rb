@@ -1,4 +1,6 @@
 class SendGrid::ApiHeader
+  attr_reader :data
+
   def initialize
     @data = {}
   end
