@@ -1,4 +1,5 @@
-require 'active_support/ordered_hash'
-require 'active_support/json'
 require 'send_grid'
+autoload :ActionMailer, 'action_mailer'
+
+ActionMailer::Base.send :include, SendGrid
 
