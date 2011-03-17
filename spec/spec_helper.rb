@@ -1,2 +1,2 @@
-require 'send_grid'
+require 'sendgrid-rails'
 
