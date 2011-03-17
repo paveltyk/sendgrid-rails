@@ -9,9 +9,7 @@ It extends ActionMailer with next methods:
     category(category_string)
     add_filter_setting(filter_name, setting_name, value)
 
-== Examples
-
-=== Rails 3 configuration
+== Rails 3 configuration
 
 In your Gemfile:
 
@@ -28,7 +26,9 @@ In your config/environment.rb:
       :password => 'your password'
     }
 
-==== Adding multiple recipients:
+== Usage examples
+
+=== Adding multiple recipients:
 
     class Mailer < ActionMailer::Base
       default :from => 'no-reply@example.com',
@@ -36,7 +36,7 @@ In your config/environment.rb:
 
       def email_with_multiple_recipients
         add_recipients %w(email1@email.com email2@email.com)
-        mail :body => 'Hello.'
+        mail :body => 'Hello!'
       end
     end
 
@@ -49,13 +49,10 @@ Mailer class definition:
               :subject => 'An email sent via SendGrid with substitutions'
 
       def mail_with_substitutions
-        emails = %w(email1@email.com email2@email.com)
-        names = %w(User1 User2)
+        add_recipients %w(email1@email.com email2@email.com)
+        substitute '-user_name-', %w(User1 User2)
 
-        add_recipients emails
-        substitute '-user_name-', names
-
-        mail :body => "Hello, -user_name-."
+        mail :body => "Hello, -user_name-!"
       end
     end
 
