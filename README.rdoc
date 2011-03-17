@@ -15,7 +15,7 @@ It extends ActionMailer with next methods:
 
 In your Gemfile:
 
-    gem 'sendgrid-rails', '>=1.0.0', :git => 'git://github.com/PavelTyk/sendgrid-rails.git'
+    gem 'sendgrid-rails', '>=1.0.0'
 
 In your config/environment.rb:
 
