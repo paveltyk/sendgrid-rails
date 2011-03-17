@@ -1,0 +1,61 @@
+= SendGrid gem for Rails
+
+SendGrid gem provides ActionMailer extensions to use SendGrid API features in you emails.
+It extends ActionMailer with next methods:
+
+    add_recipients(array_of_emails)
+    substitute(patters_string, array_of_substitunion_strings)
+    uniq_args(hash_of_unique_args)
+    category(category_string)
+    add_filter_setting(filter_name, setting_name, value)
+
+== Examples
+
+=== Rails 3 configuration
+
+In your Gemfile:
+
+    gem 'sendgrid-rails', '>=1.0.0', :git => 'git://github.com/PavelTyk/sendgrid-rails.git'
+
+In your config/environment.rb:
+
+    ActionMailer::Base.smtp_settings = {
+      :address => 'smtp.sendgrid.net',
+      :port => '25',
+      :domain => 'example.com',
+      :authentication => :plain,
+      :user_name => 'login@example.com',
+      :password => 'your password'
+    }
+
+==== Adding multiple recipients:
+
+    class Mailer < ActionMailer::Base
+      default :from => 'no-reply@example.com',
+              :subject => 'An email sent via SendGrid'
+
+      def email_with_multiple_recipients
+        add_recipients %w(email1@email.com email2@email.com)
+        mail :body => 'Hello.'
+      end
+    end
+
+=== Adding substitution vars
+
+Mailer class definition:
+
+    class Mailer < ActionMailer::Base
+      default :from => 'no-reply@example.com',
+              :subject => 'An email sent via SendGrid with substitutions'
+
+      def mail_with_substitutions
+        emails = %w(email1@email.com email2@email.com)
+        names = %w(User1 User2)
+
+        add_recipients emails
+        substitute '-user_name-', names
+
+        mail :body => "Hello, -user_name-."
+      end
+    end
+
