@@ -2,16 +2,15 @@ class SendGrid::ApiHeader
   attr_reader :data
 
   def initialize
-    @data = {}
+    @data = Hash.new { |h,k| h[k] = Hash.new(&h.default_proc) }
   end
 
   def add_recipients(recipients)
-    @data[:to] ||= []
+    @data[:to] = [] unless @data[:to].instance_of?(Array)
     @data[:to] |= Array.wrap(recipients)
   end
 
   def substitute(var, val)
-    @data[:sub] ||= {}
     @data[:sub][var] = Array.wrap(val)
   end
 
@@ -24,9 +23,6 @@ class SendGrid::ApiHeader
   end
 
   def add_filter_setting(fltr, setting, val)
-    @data[:filters] ||= {}
-    @data[:filters][fltr] ||= {}
-    @data[:filters][fltr][:settings] ||= {}
     @data[:filters][fltr][:settings][setting] = val
   end
 
