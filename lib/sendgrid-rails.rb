@@ -4,4 +4,3 @@ require 'active_support/core_ext'
 autoload :ActionMailer, 'action_mailer'
 
 ActionMailer::Base.send :include, SendGrid
-
