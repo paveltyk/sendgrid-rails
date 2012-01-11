@@ -94,3 +94,4 @@ Add an invisible image at the end of the email to track e-mail opens. If the ema
 
 * Using mail interceptor
 * ActionMailer::Base#add_recipients - removed
+* Standard SMTP To attribute get nullified after recipients added to X-SMTPAPI header
