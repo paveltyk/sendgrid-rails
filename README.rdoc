@@ -1,9 +1,8 @@
 = SendGrid gem for Rails
 
-SendGrid gem provides ActionMailer extensions to use SendGrid API features in you emails.
+SendGrid gem provides ActionMailer::Base extensions to use SendGrid API features in you emails.
 It extends ActionMailer with next methods:
 
-    add_recipients(array_of_emails)
     substitute(patters_string, array_of_substitunion_strings)
     uniq_args(hash_of_unique_args)
     category(category_string)
@@ -14,10 +13,12 @@ It extends ActionMailer with next methods:
 
 In your Gemfile:
 
-    gem 'sendgrid-rails', '>=1.0.0'
+    gem 'sendgrid-rails', '~> 2.0'
 
 In your config/environment.rb:
 
+    ActionMailer::Base.register_interceptor(SendGrid::MailInterceptor)
+    
     ActionMailer::Base.smtp_settings = {
       :address => 'smtp.sendgrid.net',
       :port => '25',
@@ -36,8 +37,7 @@ In your config/environment.rb:
               :subject => 'An email sent via SendGrid'
 
       def email_with_multiple_recipients
-        add_recipients %w(email1@email.com email2@email.com)
-        mail
+        mail :to => %w(email1@email.com email2@email.com)
       end
     end
 
@@ -50,12 +50,25 @@ Mailer class definition:
               :subject => 'An email sent via SendGrid with substitutions'
 
       def email_with_substitutions
-        add_recipients %w(email1@email.com email2@email.com)
         substitute '-user_name-', %w(User1 User2)
 
-        mail :body => "Hello, -user_name-!"
+        mail :to => %w(email1@email.com email2@email.com), :body => "Hello, -user_name-!"
       end
     end
+
+=== Adding category
+
+    Mailer class definition:
+
+        class Mailer < ActionMailer::Base
+          default :from => 'no-reply@example.com',
+                  :subject => 'An email sent via SendGrid with substitutions'
+
+          def email_with_category
+            category 'SendGridRocks'
+            mail :to => 'email1@email.com'
+          end
+        end
 
 == Apps (formerly called Filters)
 
@@ -75,3 +88,10 @@ Add an invisible image at the end of the email to track e-mail opens. If the ema
       end
     end
 
+== Change log
+
+*v2.0*
+
+* Using mail interceptor
+* ActionMailer::Base#add_recipients - removed
+* Standard SMTP To attribute get nullified after recipients added to X-SMTPAPI header

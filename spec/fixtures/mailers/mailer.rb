@@ -3,8 +3,7 @@ class Mailer < ActionMailer::Base
           :subject => 'Test email'
 
   def email_with_multiple_recipients(recipients)
-    add_recipients recipients
-    mail :body => "Hello!"
+    mail :to => recipients, :body => "Hello!"
   end
 
   def email_open_tracking(opentrack_enabled = true)
