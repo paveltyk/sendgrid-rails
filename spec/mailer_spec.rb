@@ -6,6 +6,11 @@ describe Mailer do
       Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
         should include('X-SMTPAPI: {"to":["em1@email.com","em2@email.com"]}')
     end
+
+    it 'removes original TO header part' do
+      Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
+        should_not include("To: em1@email.com")
+    end
   end
 
   describe '#open_tracking' do
