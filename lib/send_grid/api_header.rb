@@ -27,7 +27,7 @@ class SendGrid::ApiHeader
   end
 
   def to_json
-    @data.to_json
+    JSON.generate(@data, :indent => ' ')
   end
 end
 
