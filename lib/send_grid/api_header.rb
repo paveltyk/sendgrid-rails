@@ -29,5 +29,10 @@ class SendGrid::ApiHeader
   def to_json
     @data.to_json
   end
+  
+  def standard_smtp(enabled = false)
+    @standard_smtp = enabled
+  end
+  
 end
 

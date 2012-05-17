@@ -10,5 +10,11 @@ class Mailer < ActionMailer::Base
     open_tracking opentrack_enabled
     mail :to => 'email@email.com', :body => 'Hello!'
   end
+
+  def email_standard_smtp(enabled = false)
+    standard_smtp enabled
+    mail :to => 'email@email.com', :body => 'Hello!'
+  end
+
 end
 
