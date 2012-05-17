@@ -8,7 +8,8 @@ It extends ActionMailer with next methods:
     category(category_string)
     open_tracking(enabled = true)
     add_filter_setting(filter_name, setting_name, value)
-
+    standard_smtp(enabled = true)
+		
 == Rails 3 configuration
 
 In your Gemfile:
@@ -87,6 +88,23 @@ Add an invisible image at the end of the email to track e-mail opens. If the ema
         mail :to => 'email@email.com'
       end
     end
+
+
+=== Use Standard SMTP
+
+if you want to customize the header for sendgrids api but you need keep standard SMTP see below:
+
+    class Mailer < ActionMailer::Base
+      default :from => 'no-reply@example.com',
+              :subject => 'An email sent via SendGrid'
+
+      def email_standard_smtp
+        standard_smtp true
+        open_tracking true
+        mail :to => 'email@email.com'
+      end
+    end
+
 
 == Change log
 

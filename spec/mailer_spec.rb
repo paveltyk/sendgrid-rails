@@ -29,4 +29,22 @@ describe Mailer do
         should_not include('"filters":{"opentrack')
     end
   end
+  
+  describe '#standard_smtp' do
+    it 'enable standard smpt to' do
+      Mailer.email_standard_smtp(true).deliver.header.to_s.
+        should include('To: email@email.com')
+    end
+
+    it 'disable standard smtp to' do
+      Mailer.email_standard_smtp(false).deliver.header.to_s.
+        should include('To: dummy@email.com')
+    end
+    
+    it 'disable by default standard smtp to' do
+      Mailer.email_standard_smtp.deliver.header.to_s.
+        should include('To: dummy@email.com')
+    end    
+  end
+  
 end
