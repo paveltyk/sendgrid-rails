@@ -100,7 +100,7 @@ if you want to customize the header for sendgrids api but you need keep standard
 
       def email_standard_smtp
         standard_smtp true
-				open_tracking true
+        open_tracking true
         mail :to => 'email@email.com'
       end
     end
