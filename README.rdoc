@@ -8,7 +8,7 @@ It extends ActionMailer with next methods:
     category(category_string)
     open_tracking(enabled = true)
     add_filter_setting(filter_name, setting_name, value)
-		standard_smtp(enabled = true)
+    standard_smtp(enabled = true)
 		
 == Rails 3 configuration
 
