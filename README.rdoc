@@ -15,7 +15,7 @@ In your Gemfile:
 
     gem 'sendgrid-rails', '~> 2.0'
 
-In your config/environment.rb:
+In config/initializers/mail.rb:
 
     ActionMailer::Base.register_interceptor(SendGrid::MailInterceptor)
     
