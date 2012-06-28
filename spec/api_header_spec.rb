@@ -9,17 +9,17 @@ describe SendGrid::ApiHeader do
 
     it "contains 1 recipient (as array)" do
       header.add_recipients 'email@email.com'
-      header.to_json.should eql '{"to":["email@email.com"]}'
+      header.to_json.should eql '{"to":[ "email@email.com" ]}'
     end
 
     it "contaions an array of recipients" do
       header.add_recipients %w(email1@email.com email2@email.com)
-      header.to_json.should eql '{"to":["email1@email.com","email2@email.com"]}'
+      header.to_json.should eql '{"to":[ "email1@email.com", "email2@email.com" ]}'
     end
 
     it "contains substitution" do
       header.substitute :var1, 'Hello'
-      header.to_json.should eql '{"sub":{"var1":["Hello"]}}'
+      header.to_json.should eql '{"sub":{"var1":[ "Hello" ]}}'
     end
 
     it "contains uniq args" do
