@@ -1,4 +1,4 @@
-= SendGrid gem for Rails {<img src="https://secure.travis-ci.org/PavelTyk/sendgrid-rails.png" />}[http://travis-ci.org/PavelTyk/sendgrid-rails]
+= SendGrid gem for Rails 3 {<img src="https://secure.travis-ci.org/PavelTyk/sendgrid-rails.png" />}[http://travis-ci.org/PavelTyk/sendgrid-rails]
 
 SendGrid gem provides ActionMailer::Base extensions to use SendGrid API features in you emails.
 It extends ActionMailer with next methods:
@@ -58,17 +58,17 @@ Mailer class definition:
 
 === Adding category
 
-    Mailer class definition:
+Mailer class definition:
 
-        class Mailer < ActionMailer::Base
-          default :from => 'no-reply@example.com',
-                  :subject => 'An email sent via SendGrid with substitutions'
+    class Mailer < ActionMailer::Base
+      default :from => 'no-reply@example.com',
+              :subject => 'An email sent via SendGrid with substitutions'
 
-          def email_with_category
-            category 'SendGridRocks'
-            mail :to => 'email1@email.com'
-          end
-        end
+      def email_with_category
+        category 'SendGridRocks'
+        mail :to => 'email1@email.com'
+      end
+    end
 
 == Apps (formerly called Filters)
 
@@ -89,6 +89,14 @@ Add an invisible image at the end of the email to track e-mail opens. If the ema
     end
 
 == Change log
+
+*v2.0.2*
+
+* ApiHeader#to_json wraps array items with spaces
+
+*v2.0.1*
+
+* Standard SMTP To attribute set to 'dummy@email.com' after recipients added to X-SMTPAPI header
 
 *v2.0*
 
