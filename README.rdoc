@@ -1,4 +1,4 @@
-= SendGrid gem for Rails
+= SendGrid gem for Rails {<img src="https://secure.travis-ci.org/PavelTyk/sendgrid-rails.png" />}[http://travis-ci.org/PavelTyk/sendgrid-rails]
 
 SendGrid gem provides ActionMailer::Base extensions to use SendGrid API features in you emails.
 It extends ActionMailer with next methods:
