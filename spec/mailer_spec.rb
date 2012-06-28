@@ -11,6 +11,14 @@ describe Mailer do
       Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
         should_not include("To: em1@email.com")
     end
+
+    it 'maintains recommended header line length' do
+      emails = 100.times.map{ |i| "email#{i}@example.com" }
+      header = Mailer.email_with_multiple_recipients(emails).deliver.header.to_s
+      header.lines.each do |line|
+        line.should have_at_most(100).characters
+      end
+    end
   end
 
   describe '#open_tracking' do

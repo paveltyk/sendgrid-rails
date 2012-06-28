@@ -29,5 +29,13 @@ class SendGrid::ApiHeader
   def to_json
     @data.to_json
   end
-end
 
+  def to_folded_json
+    json = to_json
+    if json.size > 100
+      JSON.generate(@data, :indent => ' ') # Spaces allow ActionMailer to split header automatically
+    else
+      json
+    end
+  end
+end
