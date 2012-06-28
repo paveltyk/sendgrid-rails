@@ -4,12 +4,22 @@ describe Mailer do
   describe 'email with multiple recipients' do
     it 'set correct recipients in X-SMTAPI header' do
       Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
-        should include('X-SMTPAPI: {"to":["em1@email.com","em2@email.com"]}')
+        should include('X-SMTPAPI: {"to":[ "em1@email.com", "em2@email.com" ]}')
     end
 
     it 'removes original TO header part' do
       Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
         should_not include("To: em1@email.com")
+    end
+
+    it 'maintains recommended header line length' do
+      emails = 15.times.map{ |i| "email#{i}@example.com" }
+      header = Mailer.email_with_multiple_recipients(emails).deliver.header.to_s
+      header.lines.each do |line|
+        unless line.starts_with?('Message-ID:') # May be longer depending on your test machine
+          line.should have_at_most(72).characters
+        end
+      end
     end
   end
 
