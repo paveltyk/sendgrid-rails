@@ -2,6 +2,13 @@ module SendGrid
   autoload :ApiHeader, 'send_grid/api_header'
   autoload :MailInterceptor, 'send_grid/mail_interceptor'
   autoload :VERSION, 'send_grid/version'
+  
+  mattr_accessor :dummy_address
+  self.dummy_address = "dummy@email.com"
+  
+  def self.configure(&block)
+    yield self
+  end
 
   def self.included(base)
     base.class_eval do
