@@ -2,11 +2,18 @@ module SendGrid
   autoload :ApiHeader, 'send_grid/api_header'
   autoload :MailInterceptor, 'send_grid/mail_interceptor'
   autoload :VERSION, 'send_grid/version'
+  
+  mattr_accessor :dummy_address
+  self.dummy_address = "dummy@email.com"
+  
+  def self.configure(&block)
+    yield self
+  end
 
   def self.included(base)
     base.class_eval do
       include InstanceMethods
-      delegate :substitute, :uniq_args, :category, :add_filter_setting, :to => :sendgrid_header
+      delegate :substitute, :uniq_args, :unique_args, :category, :add_filter_setting, :to => :sendgrid_header
       alias_method_chain :mail, :sendgrid
       alias_method :sendgrid_header, :send_grid_header
     end

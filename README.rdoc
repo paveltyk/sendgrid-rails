@@ -18,6 +18,13 @@ In your Gemfile:
 In config/initializers/mail.rb:
 
     ActionMailer::Base.register_interceptor(SendGrid::MailInterceptor)
+
+    SendGrid.configure do |config|
+      # Dummy address used in sent email's To header and seen in received email's Received header.
+      # Can also be set to false if you don't want to override the To header.
+      # Note that this could lead to duplicates according to SendGrid, although the conditions for this to occur are unclear.
+      config.dummy_address = "noreply@mycompany.com" # Default: "dummy@email.com"
+    end
     
     ActionMailer::Base.smtp_settings = {
       :address => 'smtp.sendgrid.net',
