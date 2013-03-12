@@ -17,6 +17,7 @@ class SendGrid::ApiHeader
   def uniq_args(val)
     @data[:unique_args] = val if val.instance_of?(Hash)
   end
+  alias_method :unique_args, :uniq_args
 
   def category(cat)
     @data[:category] = cat

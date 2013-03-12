@@ -13,7 +13,7 @@ module SendGrid
   def self.included(base)
     base.class_eval do
       include InstanceMethods
-      delegate :substitute, :uniq_args, :category, :add_filter_setting, :to => :sendgrid_header
+      delegate :substitute, :uniq_args, :unique_args, :category, :add_filter_setting, :to => :sendgrid_header
       alias_method_chain :mail, :sendgrid
       alias_method :sendgrid_header, :send_grid_header
     end
