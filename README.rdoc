@@ -28,6 +28,17 @@ In config/initializers/mail.rb:
       :password => 'your password'
     }
 
+=== Overriding default recipient in standard SMTP header
+
+Dummy recipient email used in sent email's "To" header and seen in received email's Received header.
+By deefault set to 'dummy@email.com'
+
+In config/initializers/mail.rb:
+
+    SendGrid.configure do |config|
+      config.dummy_recipient = 'noreply@example.com'
+    end
+
 == Usage examples
 
 === Adding multiple recipients:

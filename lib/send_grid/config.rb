@@ -4,4 +4,4 @@ class SendGrid::Config
   def initialize
     @dummy_recipient = "dummy@email.com"
   end
-end  
+end
