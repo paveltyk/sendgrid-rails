@@ -39,4 +39,24 @@ describe Mailer do
         should_not include('"filters":{"opentrack')
     end
   end
+
+  describe 'dummy_recipient used in TO is taken from config' do
+    it 'should be used in TO default dummy_recipient' do
+      # by defaut dummy_recipient's email is dummy@email.com
+
+      Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
+        should include('To: dummy@email.com')
+    end
+
+    it 'should be used in To defined in config dummy_recipient' do
+      # dummy_recipient can be redefined config/initializers
+
+      SendGrid.configure do |config|
+        config.dummy_recipient = 'noreply@example.com'
+      end
+
+      Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
+        should include('To: noreply@example.com')
+    end
+  end
 end
