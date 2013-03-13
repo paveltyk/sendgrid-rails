@@ -2,6 +2,7 @@ module SendGrid
   autoload :ApiHeader, 'send_grid/api_header'
   autoload :MailInterceptor, 'send_grid/mail_interceptor'
   autoload :VERSION, 'send_grid/version'
+  autoload :Config, 'send_grid/config'
 
   def self.included(base)
     base.class_eval do
@@ -25,6 +26,19 @@ module SendGrid
 
     def open_tracking(enabled = true)
       add_filter_setting(:opentrack, :enabled, enabled ? 1 : 0) unless enabled.nil?
+    end
+  end
+
+  class << self
+    attr_writer :config
+
+    def config
+      @config ||= SendGrid::Config.new
+    end
+
+    # Sendgrid.config will be default if block is not passed
+    def configure
+      yield(self.config) if block_given?
     end
   end
 end
