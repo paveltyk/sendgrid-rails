@@ -5,6 +5,9 @@ describe Mailer do
     it 'set correct recipients in X-SMTAPI header' do
       Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
         should include('X-SMTPAPI: {"to":[ "em1@email.com", "em2@email.com" ]}')
+
+      Mailer.email_with_cc_recipients(%w(em1@email.com), %w(cc@email.com), %w(bcc@email.com)).deliver.header.to_s.
+        should include('X-SMTPAPI: {"to":[ "em1@email.com", "cc@email.com", "bcc@email.com" ]}')
     end
 
     it 'removes original TO header part' do

@@ -6,6 +6,10 @@ class Mailer < ActionMailer::Base
     mail :to => recipients, :body => "Hello!"
   end
 
+  def email_with_cc_recipients(recipients, cc, bcc)
+    mail :to => recipients, :body => "Hello!", :cc => cc, :bcc => bcc
+  end
+
   def email_open_tracking(opentrack_enabled = true)
     open_tracking opentrack_enabled
     mail :to => 'email@email.com', :body => 'Hello!'
