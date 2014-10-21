@@ -31,7 +31,7 @@ In config/initializers/mail.rb:
 === Overriding default recipient in standard SMTP header
 
 Dummy recipient email used in sent email's "To" header and seen in received email's Received header.
-By deefault set to 'dummy@email.com'
+By default set to 'dummy@email.com'
 
 In config/initializers/mail.rb:
 
