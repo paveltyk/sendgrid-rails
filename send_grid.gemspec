@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ["PavelTyk"]
   s.email       = ["paveltyk@gmail.com"]
   s.homepage    = "https://github.com/PavelTyk/sendgrid-rails"
+  s.license     = "MIT"
   s.summary     = %q{SendGrid gem fo Rails 3}
   s.description = %q{Gem to extend ActionMailer with SendGrid API support}
 
