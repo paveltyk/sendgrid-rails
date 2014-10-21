@@ -101,6 +101,14 @@ Add an invisible image at the end of the email to track e-mail opens. If the ema
 
 == Change log
 
+*v2.0.4*
+
+* CC and BCC are copied to SendGrid XSMTP-API header
+
+*v2.0.3*
+
+* Ability to change "dummy_recipient" in config
+
 *v2.0.2*
 
 * ApiHeader#to_json wraps array items with spaces
