@@ -26,6 +26,10 @@ class SendGrid::ApiHeader
     @data[:filters][fltr][:settings][setting] = val
   end
 
+  def send_at(timestamp)
+    @data[:send_at] = timestamp
+  end
+
   def to_json
     JSON.generate(@data, :array_nl => ' ')
   end
