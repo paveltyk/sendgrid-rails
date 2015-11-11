@@ -34,7 +34,7 @@ describe SendGrid::ApiHeader do
 
     it "contains send_at" do
       ts = 5.minutes.from_now.to_i
-      header.add_send_at ts
+      header.deliver_at ts
       header.to_json.should eql "{\"send_at\":#{ts}}"
     end
 

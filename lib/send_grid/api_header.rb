@@ -26,7 +26,7 @@ class SendGrid::ApiHeader
     @data[:filters][fltr][:settings][setting] = val
   end
 
-  def add_send_at(timestamp)
+  def deliver_at(timestamp)
     @data[:send_at] = timestamp
   end
 
