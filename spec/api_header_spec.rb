@@ -32,6 +32,12 @@ describe SendGrid::ApiHeader do
       header.to_json.should eql '{"category":"category_name"}'
     end
 
+    it "contains send_at" do
+      ts = 5.minutes.from_now.to_i
+      header.deliver_at ts
+      header.to_json.should eql "{\"send_at\":#{ts}}"
+    end
+
     it "contains filter settings" do
       header.add_filter_setting :filter1, :setting1, 'val1'
       header.to_json.should eql '{"filters":{"filter1":{"settings":{"setting1":"val1"}}}}'
