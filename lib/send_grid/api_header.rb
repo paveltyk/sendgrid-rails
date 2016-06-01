@@ -30,6 +30,11 @@ class SendGrid::ApiHeader
     @data[:send_at] = timestamp
   end
 
+  def template_id(temp_id)
+    add_filter_setting('templates', 'enable', '1')
+    add_filter_setting('templates', 'template_id', temp_id)
+  end
+
   def to_json
     JSON.generate(@data, :array_nl => ' ')
   end

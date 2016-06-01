@@ -38,6 +38,11 @@ describe SendGrid::ApiHeader do
       header.to_json.should eql "{\"send_at\":#{ts}}"
     end
 
+    it "contains template_id" do
+      header.template_id 'template_id_1'
+      header.to_json.should eql '{"filters":{"templates":{"settings":{"enable":"1","template_id":"template_id_1"}}}}'
+    end
+
     it "contains filter settings" do
       header.add_filter_setting :filter1, :setting1, 'val1'
       header.to_json.should eql '{"filters":{"filter1":{"settings":{"setting1":"val1"}}}}'
