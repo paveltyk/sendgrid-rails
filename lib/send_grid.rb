@@ -6,20 +6,20 @@ module SendGrid
 
   def self.included(base)
     base.class_eval do
-      include InstanceMethods
+      prepend InstanceMethods
       delegate :substitute, :uniq_args, :category, :add_filter_setting, :deliver_at, :to => :sendgrid_header
-      alias_method_chain :mail, :sendgrid
       alias_method :sendgrid_header, :send_grid_header
     end
   end
+
 
   module InstanceMethods
     def send_grid_header
       @send_grid_header ||= SendGrid::ApiHeader.new
     end
 
-    def mail_with_sendgrid(headers={}, &block)
-      mail_without_sendgrid(headers, &block).tap do |message|
+    def mail(headers={}, &block)
+      super(headers, &block).tap do |message|
         message.instance_variable_set :@sendgrid_header, sendgrid_header
       end
     end
