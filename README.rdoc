@@ -119,6 +119,15 @@ Add an invisible image at the end of the email to track e-mail opens. If the ema
 
 == Change log
 
+*v3.0.0*
+
+* Depricated method `:alias_method_chain` has been replaced with `Module#prepend` Ruby 2.0 feature.
+* Requires Ruby 2.0+
+
+*v2.0.5*
+
+* Introduced `deliver_at` feature.
+
 *v2.0.4*
 
 * CC and BCC are copied to SendGrid XSMTP-API header
