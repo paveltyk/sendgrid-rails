@@ -35,6 +35,10 @@ class SendGrid::ApiHeader
     add_filter_setting('templates', 'template_id', temp_id)
   end
 
+  def suppression_group(group_id)
+    @data[:asm_group_id] = group_id.to_s
+  end
+
   def to_json
     JSON.generate(@data, :array_nl => ' ')
   end

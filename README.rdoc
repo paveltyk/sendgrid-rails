@@ -3,11 +3,12 @@
 SendGrid gem provides ActionMailer::Base extensions to use SendGrid API features in you emails.
 It extends ActionMailer with next methods:
 
-    substitute(patters_string, array_of_substitunion_strings)
+    substitute(patterns_string, array_of_substitution_strings)
     uniq_args(hash_of_unique_args)
     category(category_string)
     open_tracking(enabled = true)
     add_filter_setting(filter_name, setting_name, value)
+    suppression_group(group_id)
 
 == Rails 3 configuration
 
@@ -18,7 +19,7 @@ In your Gemfile:
 In config/initializers/mail.rb:
 
     ActionMailer::Base.register_interceptor(SendGrid::MailInterceptor)
-    
+
     ActionMailer::Base.smtp_settings = {
       :address => 'smtp.sendgrid.net',
       :port => '25',
@@ -31,7 +32,7 @@ In config/initializers/mail.rb:
 If you use Heroku, here what the mailer initializer may look like:
 
     ActionMailer::Base.register_interceptor(SendGrid::MailInterceptor)
-    
+
     if ENV['SENDGRID_USERNAME'] && ENV['SENDGRID_PASSWORD']
       ActionMailer::Base.smtp_settings = {
         :address        => 'smtp.sendgrid.net',
@@ -125,7 +126,7 @@ Add an invisible image at the end of the email to track e-mail opens. If the ema
 
 *v3.0.0*
 
-* Depricated method `:alias_method_chain` has been replaced with `Module#prepend` Ruby 2.0 feature
+* Deprecated method `:alias_method_chain` has been replaced with `Module#prepend` Ruby 2.0 feature
 * Requires Ruby 2.0+
 
 *v2.0.5*

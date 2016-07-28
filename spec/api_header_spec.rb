@@ -12,7 +12,7 @@ describe SendGrid::ApiHeader do
       header.to_json.should eql '{"to":[ "email@email.com" ]}'
     end
 
-    it "contaions an array of recipients" do
+    it "contains an array of recipients" do
       header.add_recipients %w(email1@email.com email2@email.com)
       header.to_json.should eql '{"to":[ "email1@email.com", "email2@email.com" ]}'
     end
@@ -47,6 +47,10 @@ describe SendGrid::ApiHeader do
       header.add_filter_setting :filter1, :setting1, 'val1'
       header.to_json.should eql '{"filters":{"filter1":{"settings":{"setting1":"val1"}}}}'
     end
+
+    it "contains suppression_group" do
+      header.suppression_group 1234
+      header.to_json.should eql '{"asm_group_id":"1234"}'
+    end
   end
 end
-
