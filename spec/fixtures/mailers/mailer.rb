@@ -12,7 +12,6 @@ class Mailer < ActionMailer::Base
 
   def email_open_tracking(opentrack_enabled = true)
     open_tracking opentrack_enabled
-    mail :to => 'email@email.com', :body => 'Hello!'
+    mail :to => 'email@example.com', :body => 'Hello!'
   end
 end
-

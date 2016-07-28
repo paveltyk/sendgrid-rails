@@ -3,16 +3,16 @@ require 'spec_helper'
 describe Mailer do
   describe 'email with multiple recipients' do
     it 'set correct recipients in X-SMTAPI header' do
-      Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
-        should include('X-SMTPAPI: {"to":[ "em1@email.com", "em2@email.com" ]}')
+      Mailer.email_with_multiple_recipients(%w(em1@example.com em2@example.com)).deliver.header.to_s.
+        should include('X-SMTPAPI: {"to":[ "em1@example.com", "em2@example.com" ]}')
 
-      Mailer.email_with_cc_recipients(%w(em1@email.com), %w(cc@email.com), %w(bcc@email.com)).deliver.header.to_s.
-        should include('X-SMTPAPI: {"to":[ "em1@email.com", "cc@email.com", "bcc@email.com" ]}')
+      Mailer.email_with_cc_recipients(%w(em1@example.com), %w(cc@example.com), %w(bcc@example.com)).deliver.header.to_s.
+        should include('X-SMTPAPI: {"to":[ "em1@example.com", "cc@example.com", "bcc@example.com" ]}')
     end
 
     it 'removes original TO header part' do
-      Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
-        should_not include("To: em1@email.com")
+      Mailer.email_with_multiple_recipients(%w(em1@example.com em2@example.com)).deliver.header.to_s.
+        should_not include("To: em1@example.com")
     end
 
     it 'maintains recommended header line length' do
@@ -45,10 +45,10 @@ describe Mailer do
 
   describe 'dummy_recipient used in TO is taken from config' do
     it 'should be used in TO default dummy_recipient' do
-      # by defaut dummy_recipient's email is dummy@email.com
+      # by defaut dummy_recipient's email is dummy@example.com
 
-      Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
-        should include('To: dummy@email.com')
+      Mailer.email_with_multiple_recipients(%w(em1@example.com em2@example.com)).deliver.header.to_s.
+        should include('To: dummy@example.com')
     end
 
     it 'should be used in To defined in config dummy_recipient' do
@@ -58,7 +58,7 @@ describe Mailer do
         config.dummy_recipient = 'noreply@example.com'
       end
 
-      Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
+      Mailer.email_with_multiple_recipients(%w(em1@example.com em2@example.com)).deliver.header.to_s.
         should include('To: noreply@example.com')
     end
   end
