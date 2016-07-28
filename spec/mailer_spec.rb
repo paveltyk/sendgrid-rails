@@ -45,10 +45,10 @@ describe Mailer do
 
   describe 'dummy_recipient used in TO is taken from config' do
     it 'should be used in TO default dummy_recipient' do
-      # by defaut dummy_recipient's email is dummy@email.com
+      # by defaut dummy_recipient's email is dummy@example.com
 
       Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
-        should include('To: dummy@email.com')
+        should include('To: dummy@example.com')
     end
 
     it 'should be used in To defined in config dummy_recipient' do

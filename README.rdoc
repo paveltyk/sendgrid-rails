@@ -49,7 +49,7 @@ If you use Heroku, here what the mailer initializer may look like:
 === Overriding default recipient in standard SMTP header
 
 Dummy recipient email used in sent email's "To" header and seen in received email's Received header.
-By default set to 'dummy@email.com'
+By default set to 'dummy@example.com'
 
 In config/initializers/mail.rb:
 
@@ -146,7 +146,7 @@ Add an invisible image at the end of the email to track e-mail opens. If the ema
 
 *v2.0.1*
 
-* Standard SMTP To attribute set to 'dummy@email.com' after recipients added to X-SMTPAPI header
+* Standard SMTP To attribute set to 'dummy@example.com' after recipients added to X-SMTPAPI header
 
 *v2.0*
 
