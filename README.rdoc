@@ -8,6 +8,7 @@ It extends ActionMailer with next methods:
     category(category_string)
     open_tracking(enabled = true)
     add_filter_setting(filter_name, setting_name, value)
+    suppression_group(group_id)
 
 == Rails 3 configuration
 

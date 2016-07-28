@@ -47,6 +47,10 @@ describe SendGrid::ApiHeader do
       header.add_filter_setting :filter1, :setting1, 'val1'
       header.to_json.should eql '{"filters":{"filter1":{"settings":{"setting1":"val1"}}}}'
     end
+
+    it "contains suppression_group" do
+      header.suppression_group 1234
+      header.to_json.should eql '{"asm_group_id":"1234"}'
+    end
   end
 end
-
