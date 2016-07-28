@@ -61,5 +61,16 @@ describe Mailer do
       Mailer.email_with_multiple_recipients(%w(em1@email.com em2@email.com)).deliver.header.to_s.
         should include('To: noreply@example.com')
     end
+
+    it 'should use first email address in To when no dummy_recipient is defined' do
+      # dummy_recipient can be redefined config/initializers
+
+      SendGrid.configure do |config|
+        config.dummy_recipient = nil
+      end
+
+      Mailer.email_with_multiple_recipients(%w(em1@example.com em2@example.com)).deliver.header.to_s.
+        should include('To: em1@example.com')
+    end
   end
 end

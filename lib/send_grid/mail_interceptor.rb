@@ -6,7 +6,7 @@ module SendGrid
       sendgrid_header.add_recipients(mail.cc)
       sendgrid_header.add_recipients(mail.bcc)
       mail.header['X-SMTPAPI'] = sendgrid_header.to_json if sendgrid_header.data.present?
-      mail.header['to'] = SendGrid.config.dummy_recipient
+      mail.header['to'] = SendGrid.config.dummy_recipient || mail.to.first
     end
   end
 end
