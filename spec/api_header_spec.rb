@@ -8,13 +8,13 @@ describe SendGrid::ApiHeader do
     end
 
     it "contains 1 recipient (as array)" do
-      header.add_recipients 'email@email.com'
-      header.to_json.should eql '{"to":[ "email@email.com" ]}'
+      header.add_recipients 'email@example.com'
+      header.to_json.should eql '{"to":[ "email@example.com" ]}'
     end
 
     it "contaions an array of recipients" do
-      header.add_recipients %w(email1@email.com email2@email.com)
-      header.to_json.should eql '{"to":[ "email1@email.com", "email2@email.com" ]}'
+      header.add_recipients %w(email1@example.com email2@example.com)
+      header.to_json.should eql '{"to":[ "email1@example.com", "email2@example.com" ]}'
     end
 
     it "contains substitution" do
@@ -49,4 +49,3 @@ describe SendGrid::ApiHeader do
     end
   end
 end
-

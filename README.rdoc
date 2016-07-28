@@ -66,7 +66,7 @@ In config/initializers/mail.rb:
               :subject => 'An email sent via SendGrid'
 
       def email_with_multiple_recipients
-        mail :to => %w(email1@email.com email2@email.com)
+        mail :to => %w(email1@example.com email2@example.com)
       end
     end
 
@@ -81,7 +81,7 @@ Mailer class definition:
       def email_with_substitutions
         substitute '-user_name-', %w(User1 User2)
 
-        mail :to => %w(email1@email.com email2@email.com), :body => "Hello, -user_name-!"
+        mail :to => %w(email1@example.com email2@example.com), :body => "Hello, -user_name-!"
       end
     end
 
@@ -95,7 +95,7 @@ Mailer class definition:
 
       def email_with_category
         category 'SendGridRocks'
-        mail :to => 'email1@email.com'
+        mail :to => 'email1@example.com'
       end
     end
 
@@ -113,7 +113,7 @@ Add an invisible image at the end of the email to track e-mail opens. If the ema
 
       def email_with_open_tracking_enabled
         open_tracking true
-        mail :to => 'email@email.com'
+        mail :to => 'email@example.com'
       end
     end
 
